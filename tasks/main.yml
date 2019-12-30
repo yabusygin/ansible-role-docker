@@ -37,3 +37,14 @@
     name: docker.service
     state: started
     enabled: yes
+
+- name: set non-root users
+  user:
+    name: "{{ user }}"
+    state: present
+    groups:
+      - docker
+    append: yes
+  loop: "{{ docker_users }}"
+  loop_control:
+    loop_var: user

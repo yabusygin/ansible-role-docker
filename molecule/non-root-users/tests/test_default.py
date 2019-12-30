@@ -1,5 +1,3 @@
-"""Test role."""
-
 import os
 import re
 
@@ -10,17 +8,16 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 ).get_hosts("instance")
 
 
-def test_hello_world(host):
-    """Run hello-world container."""
-    cmd = host.run_test(command="docker container run hello-world")
-
+def test_non_root_user(host):
+    with host.sudo(user="vagrant"):
+        cmd = host.run_test(command="docker container run hello-world")
     assert "Hello from Docker!" in cmd.stdout
 
 
 def test_docker_group_members(host):
     content = host.file(path="/etc/group").content_string
     match = re.search(
-        pattern=r"^docker:x:\d+:$",
+        pattern=r"^docker:x:\d+:vagrant$",
         string=content,
         flags=re.MULTILINE,
     )
