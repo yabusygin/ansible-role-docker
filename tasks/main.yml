@@ -32,6 +32,12 @@
     force_apt_get: yes
     update_cache: yes
 
+- name: set daemon config
+  template:
+    src: daemon.json.j2
+    dest: /etc/docker/daemon.json
+    lstrip_blocks: yes
+
 - name: start and enable daemon
   systemd:
     name: docker.service
