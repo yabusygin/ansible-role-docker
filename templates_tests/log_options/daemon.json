@@ -1,0 +1,7 @@
+{
+    "log-driver": "journald",
+    "log-opts": {
+        "tag": "test",
+        "env": "TEST1,TEST2"
+    }
+}
