@@ -1,6 +1,6 @@
-import json
 import os
 import re
+import textwrap
 
 import testinfra.utils.ansible_runner
 
@@ -25,11 +25,16 @@ def test_docker_group_members(host):
 
 
 def test_daemon_config(host):
-    config = json.loads(
-        s=host.file(path="/etc/docker/daemon.json").content_string,
+    expect = textwrap.dedent(
+        """\
+        {
+            "log-driver": "json-file",
+            "log-opts": {
+                "max-size": "10m",
+                "max-file": "3"
+            }
+        }
+        """
     )
-    assert set(config.keys()) == {"log-driver", "log-opts"}
-    assert config["log-driver"] == "json-file"
-    assert set(config["log-opts"]) == {"max-size", "max-file"}
-    assert config["log-opts"]["max-size"] == "10m"
-    assert config["log-opts"]["max-file"] == "3"
+    actual = host.file(path="/etc/docker/daemon.json").content_string
+    assert expect == actual
