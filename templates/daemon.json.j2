@@ -1,1 +1,11 @@
+{% if docker_config %}
 {{ docker_config | to_nice_json(indent=4) }}
+{% else %}
+{
+    "log-driver": "json-file",
+    "log-opts": {
+        "max-size": "10m",
+        "max-file": "3"
+    }
+}
+{% endif %}
