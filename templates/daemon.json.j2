@@ -14,7 +14,11 @@
     ],
     {% endif %}
     {% if docker_log_driver is defined %}
-        {# TODO #}
+        {% if docker_log_options is defined %}
+            {# TODO #}
+        {% else %}
+    "log-driver": "{{ docker_log_driver }}"
+        {% endif %}
     {% else %}
     "log-driver": "json-file",
     "log-opts": {
