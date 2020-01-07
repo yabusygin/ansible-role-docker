@@ -2,6 +2,17 @@
 {{ docker_config | to_nice_json(indent=4) }}
 {% else %}
 {
+    {% if docker_insecure_registries %}
+    "insecure-registries": [
+        {% for registry in docker_insecure_registries %}
+            {% if loop.last %}
+        "{{ registry }}"
+            {% else %}
+        "{{ registry }}",
+            {% endif %}
+        {% endfor %}
+    ],
+    {% endif %}
     "log-driver": "json-file",
     "log-opts": {
         "max-size": "{{ docker_log_max_size }}",
