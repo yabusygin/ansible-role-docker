@@ -1,0 +1,3 @@
+docker_insecure_registries:
+  - "registry1.example.com:5001"
+  - "registry2.example.com:5002"
