@@ -4,7 +4,7 @@
 {
     "log-driver": "json-file",
     "log-opts": {
-        "max-size": "10m",
+        "max-size": "{{ docker_log_max_size }}",
         "max-file": "3"
     }
 }

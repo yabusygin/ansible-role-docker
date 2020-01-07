@@ -5,3 +5,4 @@ docker_apt_sources_uri: "https://download.docker.com/linux/{{ ansible_facts['dis
 docker_apt_sources_suite: "{{ ansible_facts['lsb']['codename'] }}"
 docker_users: []
 docker_config: {}
+docker_log_max_size: 10m
