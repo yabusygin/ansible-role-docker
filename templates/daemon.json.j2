@@ -15,7 +15,16 @@
     {% endif %}
     {% if docker_log_driver is defined %}
         {% if docker_log_options is defined %}
-            {# TODO #}
+    "log-driver": "{{ docker_log_driver }}",
+    "log-opts": {
+            {% for option in docker_log_options %}
+                {% if loop.last %}
+        "{{ option.name }}": "{{ option.value }}"
+                {% else %}
+        "{{ option.name }}": "{{ option.value }}",
+                {% endif %}
+            {% endfor %}
+    }
         {% else %}
     "log-driver": "{{ docker_log_driver }}"
         {% endif %}

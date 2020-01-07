@@ -1,0 +1,6 @@
+docker_log_driver: journald
+docker_log_options:
+  - name: tag
+    value: test
+  - name: env
+    value: TEST1,TEST2
