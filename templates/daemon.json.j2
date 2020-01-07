@@ -1,3 +1,5 @@
+{% import "macro.j2" as macro -%}
+
 {% if docker_config %}
 {{ docker_config | to_nice_json(indent=4) }}
 {% else %}
@@ -19,9 +21,9 @@
     "log-opts": {
             {% for option in docker_log_options %}
                 {% if loop.last %}
-        "{{ option.name }}": "{{ option.value }}"
+        "{{ option.name }}": "{{ macro.comma_separated(option.value) }}"
                 {% else %}
-        "{{ option.name }}": "{{ option.value }}",
+        "{{ option.name }}": "{{ macro.comma_separated(option.value) }}",
                 {% endif %}
             {% endfor %}
     }

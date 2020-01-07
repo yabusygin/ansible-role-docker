@@ -3,4 +3,6 @@ docker_log_options:
   - name: tag
     value: test
   - name: env
-    value: TEST1,TEST2
+    value:
+      - TEST1
+      - TEST2
