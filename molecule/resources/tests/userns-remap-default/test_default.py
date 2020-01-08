@@ -29,29 +29,32 @@ def test_user(host):
     assert host.user(name="dockremap").exists
 
 
-def test_subuid(host):
-    subuid_content = host.file(path="/etc/subuid").content_string
-    subuid_entries = [
+def test_namespaced_directory(host):
+    entry = _get_entry(host=host, path="/etc/subuid", name="dockremap")
+    assert entry is not None
+
+    subuid = entry[1]
+
+    entry = _get_entry(host=host, path="/etc/subgid", name="dockremap")
+    assert entry is not None
+
+    subgid = entry[1]
+
+    namespaced_dir_path = "/var/lib/docker/{}.{}".format(subuid, subgid)
+    assert host.file(path=namespaced_dir_path).is_directory
+
+
+def _get_entry(host, path, name):
+    content = host.file(path).content_string
+    entries = [
         tuple(line.split(":"))
-        for line in subuid_content.splitlines()
+        for line in content.splitlines()
     ]
     matches = [
         entry
-        for entry in subuid_entries
-        if entry[0] == "dockremap"
+        for entry in entries
+        if entry[0] == name
     ]
-    assert len(matches) == 1
-
-
-def test_subgid(host):
-    subuid_content = host.file(path="/etc/subgid").content_string
-    subuid_entries = [
-        tuple(line.split(":"))
-        for line in subuid_content.splitlines()
-    ]
-    matches = [
-        entry
-        for entry in subuid_entries
-        if entry[0] == "dockremap"
-    ]
-    assert len(matches) == 1
+    if matches:
+        return matches[0]
+    return None
