@@ -27,3 +27,17 @@ def test_daemon_config(host):
 
 def test_user(host):
     assert host.user(name="dockremap").exists
+
+
+def test_subuid(host):
+    subuid_content = host.file(path="/etc/subuid").content_string
+    subuid_entries = [
+        tuple(line.split(":"))
+        for line in subuid_content.splitlines()
+    ]
+    matches = [
+        entry
+        for entry in subuid_entries
+        if entry[0] == "dockremap"
+    ]
+    assert len(matches) == 1
