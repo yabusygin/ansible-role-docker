@@ -1,0 +1,31 @@
+---
+- name: get current Compose version info
+  command: docker-compose version --short
+  register: docker_compose_version_info
+  changed_when: false
+  failed_when: false
+
+- name: set current Compose version
+  set_fact:
+    docker_compose_current_version: "{{ docker_compose_version_info.stdout | trim }}"
+  when: docker_compose_version_info.stdout is defined
+
+- name: get Compose latest release info
+  uri:
+    url: "{{ docker_compose_latest_release_info_url }}"
+  register: docker_compose_latest_release_info
+  when: docker_compose_version is undefined
+
+- name: set Compose version to install
+  set_fact:
+    docker_compose_version: "{{ docker_compose_latest_release_info.json.name }}"
+  when: docker_compose_version is undefined
+
+- name: install Compose
+  get_url:
+    url: "{{ docker_compose_download_url }}"
+    dest: "{{ docker_compose_path }}"
+    mode: 0755
+  when: >
+    docker_compose_current_version is undefined
+    or docker_compose_version != docker_compose_current_version
