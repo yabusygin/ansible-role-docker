@@ -41,3 +41,17 @@ def test_subuid(host):
         if entry[0] == "dockremap"
     ]
     assert len(matches) == 1
+
+
+def test_subgid(host):
+    subuid_content = host.file(path="/etc/subgid").content_string
+    subuid_entries = [
+        tuple(line.split(":"))
+        for line in subuid_content.splitlines()
+    ]
+    matches = [
+        entry
+        for entry in subuid_entries
+        if entry[0] == "dockremap"
+    ]
+    assert len(matches) == 1
