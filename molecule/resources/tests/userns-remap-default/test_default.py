@@ -23,3 +23,7 @@ def test_daemon_config(host):
     )
     actual = host.file(path="/etc/docker/daemon.json").content_string
     assert expect == actual
+
+
+def test_user(host):
+    assert host.user(name="dockremap").exists
