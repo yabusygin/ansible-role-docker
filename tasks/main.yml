@@ -56,3 +56,4 @@
   loop: "{{ docker_users }}"
   loop_control:
     loop_var: user
+  when: docker_users is defined
