@@ -57,3 +57,7 @@
   loop_control:
     loop_var: user
   when: docker_users is defined
+
+- name: install Compose
+  include_tasks: install-compose.yml
+  when: docker_compose_install
