@@ -4,6 +4,13 @@
 {{ docker_config | to_nice_json(indent=4) }}
 {% else %}
 {
+    {% if docker_userns_remap_enable %}
+        {% if docker_userns_remap_group is defined %}
+    "userns-remap": "{{ docker_userns_remap_user }}:{{ docker_userns_remap_group }}",
+        {% else %}
+    "userns-remap": "{{ docker_userns_remap_user }}",
+        {% endif %}
+    {% endif %}
     {% if docker_insecure_registries is defined %}
     "insecure-registries": [
         {% for registry in docker_insecure_registries %}
