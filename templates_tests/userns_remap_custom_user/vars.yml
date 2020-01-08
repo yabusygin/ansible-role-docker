@@ -1,0 +1,2 @@
+docker_userns_remap_enable: yes
+docker_userns_remap_user: testuser
