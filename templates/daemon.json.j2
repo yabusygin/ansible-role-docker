@@ -1,6 +1,6 @@
 {% import "macro.j2" as macro -%}
 
-{% if docker_config %}
+{% if docker_config is defined %}
 {{ docker_config | to_nice_json(indent=4) }}
 {% else %}
 {
