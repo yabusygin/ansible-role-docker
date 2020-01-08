@@ -4,7 +4,7 @@
 {{ docker_config | to_nice_json(indent=4) }}
 {% else %}
 {
-    {% if docker_insecure_registries %}
+    {% if docker_insecure_registries is defined %}
     "insecure-registries": [
         {% for registry in docker_insecure_registries %}
             {% if loop.last %}
