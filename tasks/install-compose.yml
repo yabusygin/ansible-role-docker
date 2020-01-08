@@ -1,11 +1,11 @@
 ---
-- name: get current Compose version info
+- name: get Compose current version info
   command: docker-compose version --short
   register: docker_compose_version_info
   changed_when: false
   failed_when: false
 
-- name: set current Compose version
+- name: set Compose current version
   set_fact:
     docker_compose_current_version: "{{ docker_compose_version_info.stdout | trim }}"
   when: docker_compose_version_info.stdout is defined
