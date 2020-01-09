@@ -101,7 +101,7 @@ Example Playbook
 ---
 - hosts: production
   roles:
-    - role: docker
+    - role: yabusygin.docker
   vars:
     docker_insecure_registries:
       - "registry1.example.com:5001"
