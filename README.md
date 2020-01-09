@@ -15,12 +15,12 @@ None.
 Role Variables
 --------------
 
-All variables are optional. Example of variable usage provided
+All variables are optional. An example of variable usage provided
 in *Example Playbook* section.
 
 ### Logging ###
 
-By default the following configuration is aaplied:
+By default the following configuration is applied:
 
 ```json
 {
@@ -32,8 +32,9 @@ By default the following configuration is aaplied:
 }
 ```
 
-`docker_log_driver` variable could be used to override default logging driver.
-Custom logging options could be specified with `docker_log_options` variable.
+`docker_log_driver` variable could be used to override the default logging
+driver. Custom logging options could be specified with `docker_log_options`
+variable.
 
 ### Non-root Users ###
 
@@ -84,7 +85,7 @@ To disable Docker Compose installation set `docker_compose_install` variable
 to `no`.
 
 The latest Compose version is installed by default. Use `docker_compose_version`
-variable to specify the particular version to install. To change th default
+variable to specify the particular version to install. To change the default
 Compose executable installation path (`/usr/bin/docker-compose`) override
 `docker_compose_path` variable value.
 
@@ -135,4 +136,4 @@ MIT
 Author Information
 ------------------
 
-Alexey Busygin <busygin.contact@yandex.ru>
+Alexey Busygin \<busygin.contact@yandex.ru\>
