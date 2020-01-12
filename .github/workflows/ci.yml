@@ -28,4 +28,4 @@ jobs:
       - name: run default molecule test
         run: |
           cd $GITHUB_WORKSPACE/docker
-          molecule test
+          molecule test || cat /home/runner/.cache/molecule/docker/default/vagrant-instance.err
