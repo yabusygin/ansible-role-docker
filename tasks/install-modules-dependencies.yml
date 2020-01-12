@@ -1,0 +1,20 @@
+---
+- name: install pip module dependencies (Python 2)
+  apt:
+    name:
+      - python-pip
+      - python-setuptools
+      - python-virtualenv
+    state: present
+    force_apt_get: yes
+  when: ansible_facts.python.version.major == 2
+
+- name: install pip module dependencies (Python 3)
+  apt:
+    name:
+      - python3-pip
+      - python3-setuptools
+      - python3-virtualenv
+    state: present
+    force_apt_get: yes
+  when: ansible_facts.python.version.major == 3

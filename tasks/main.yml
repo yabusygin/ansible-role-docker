@@ -66,3 +66,7 @@
 - name: install Compose
   include_tasks: install-compose.yml
   when: docker_compose_install
+
+- name: install dependencies of Ansible modules for Docker
+  include_tasks: install-modules-dependencies.yml
+  when: docker_modules_dependencies_install
