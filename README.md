@@ -101,7 +101,7 @@ To disable installation of Ansible module dependencies set
 
 ### Compose Binary ###
 
-To install [Docker Compose binary][Compose Releases] installation set
+To install [Docker Compose binary][Compose Releases] set
 `docker_compose_binary_install` variable to `yes`. Note that Docker Compose
 Python package is already installed in default configuration (see
 *Ansible Modules Dependencies* section).
