@@ -149,8 +149,11 @@ Example Playbook
       - docker-admin-1
       - docker-admin-2
 
-    docker_compose_version: 1.23.2
-    docker_compose_path: /usr/local/bin/docker-compose
+    docker_modules_dependencies_install: no
+
+    docker_compose_binary_install: yes
+    docker_compose_binary_version: 1.23.2
+    docker_compose_binary_path: /usr/local/bin/docker-compose
 ```
 
 License
