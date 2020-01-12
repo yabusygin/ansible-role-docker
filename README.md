@@ -81,15 +81,38 @@ docker_config:
     max-file: "3"
 ```
 
-### Compose Options ###
+### Ansible Modules Dependencies ###
 
-To disable Docker Compose installation set `docker_compose_install` variable
-to `no`.
+Dependencies of the following Ansible modules are installed by default:
 
-The latest Compose version is installed by default. Use `docker_compose_version`
-variable to specify the particular version to install. To change the default
-Compose executable installation path (`/usr/bin/docker-compose`) override
-`docker_compose_path` variable value.
+*   [docker_container](https://docs.ansible.com/ansible/latest/modules/docker_container_module.html)
+*   [docker_image](https://docs.ansible.com/ansible/latest/modules/docker_image_module.html)
+*   [docker_network](https://docs.ansible.com/ansible/latest/modules/docker_network_module.html)
+*   [docker_volume](https://docs.ansible.com/ansible/latest/modules/docker_volume_module.html)
+*   [docker_compose](https://docs.ansible.com/ansible/latest/modules/docker_compose_module.html)
+*   [docker_login](https://docs.ansible.com/ansible/latest/modules/docker_login_module.html)
+
+[Docker Compose Python package][docker-compose] is also installed.
+
+To disable installation of Ansible module dependencies set
+`docker_modules_dependencies_install` variable to `no`.
+
+[docker-compose]: https://pypi.org/project/docker-compose/
+
+### Compose Binary ###
+
+To install [Docker Compose binary][Compose Releases] installation set
+`docker_compose_binary_install` variable to `yes`. Note that Docker Compose
+Python package is already installed in default configuration (see
+*Ansible Modules Dependencies* section).
+
+The latest Compose version is installed by default. Use
+`docker_compose_binary_version` variable to specify the particular version
+to install. To change the default Compose executable installation path
+(`/usr/bin/docker-compose`) override `docker_compose_binary_path` variable
+value.
+
+[Compose Releases]: https://github.com/docker/compose/releases
 
 Dependencies
 ------------
