@@ -25,5 +25,7 @@ jobs:
           python -m pip install --requirement "$GITHUB_WORKSPACE/docker/requirements.txt"
       - name: run templates rendering tests
         run: python -m unittest discover --verbose --start-directory "$GITHUB_WORKSPACE/docker"
-      - name: "debug: show Vagrant version"
-        run: vagrant --version
+      - name: run default molecule test
+        run: |
+          cd $GITHUB_WORKSPACE/docker
+          molecule test

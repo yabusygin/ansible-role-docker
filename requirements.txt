@@ -3,3 +3,4 @@ Jinja2
 PyYAML
 importlib_resources
 requests
+molecule[vagrant]
