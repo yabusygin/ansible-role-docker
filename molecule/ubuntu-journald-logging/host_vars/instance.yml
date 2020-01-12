@@ -1,6 +1,4 @@
 ---
-ansible_become: yes
-
 docker_log_driver: journald
 docker_log_options:
   - name: tag

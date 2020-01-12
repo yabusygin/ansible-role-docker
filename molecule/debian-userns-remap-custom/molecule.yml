@@ -2,14 +2,19 @@
 dependency:
   name: galaxy
 driver:
-  name: vagrant
-  provider:
-    name: virtualbox
+  name: docker
 lint:
   name: yamllint
 platforms:
   - name: instance
-    box: debian/buster64
+    image: "geerlingguy/docker-debian10-ansible:latest"
+    command: ""
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+      - "/var/lib/docker"
+    keep_volumes: false
+    privileged: true
+    pre_build_image: true
 provisioner:
   name: ansible
   lint:

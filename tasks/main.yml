@@ -32,6 +32,11 @@
     force_apt_get: yes
     update_cache: yes
 
+- name: create config directory
+  file:
+    path: /etc/docker
+    state: directory
+
 - name: set daemon config
   template:
     src: daemon.json.j2
