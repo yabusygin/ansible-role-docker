@@ -2,7 +2,6 @@ import os
 import re
 import textwrap
 
-import requests
 import packaging.version
 
 import testinfra.utils.ansible_runner
@@ -41,18 +40,6 @@ def test_daemon_config(host):
     )
     actual = host.file(path="/etc/docker/daemon.json").content_string
     assert expect == actual
-
-
-def test_compose_version(host):
-    cmd = host.run_test(command="docker-compose version --short")
-    current_version = cmd.stdout.strip()
-
-    response = requests.get(
-        url="https://api.github.com/repos/docker/compose/releases/latest",
-    )
-    latest_version = response.json()["name"]
-
-    assert current_version == latest_version
 
 
 def test_ansible_modules_dependencies(host):

@@ -63,10 +63,10 @@
     loop_var: user
   when: docker_users is defined
 
-- name: install Compose
-  include_tasks: install-compose.yml
-  when: docker_compose_install
-
 - name: install dependencies of Ansible modules for Docker
   include_tasks: install-modules-dependencies.yml
   when: docker_modules_dependencies_install
+
+- name: install Compose binary
+  include_tasks: install-compose-binary.yml
+  when: docker_compose_binary_install
