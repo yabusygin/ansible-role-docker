@@ -2,14 +2,18 @@
 dependency:
   name: galaxy
 driver:
-  name: vagrant
-  provider:
-    name: virtualbox
+  name: docker
 lint:
   name: yamllint
 platforms:
   - name: instance
-    box: ubuntu/bionic64
+    image: "geerlingguy/docker-ubuntu1804-ansible:latest"
+    command: ""
+    volumes:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
+      - "docker-data:/var/lib/docker"
+    privileged: true
+    pre_build_image: true
 provisioner:
   name: ansible
   lint:
