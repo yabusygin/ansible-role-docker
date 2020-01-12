@@ -17,6 +17,13 @@ jobs:
           python-version: "3.8"
       - name: install dependencies
         run: |
+          sudo apt-get update
+          sudo apt-get --yes install virtualbox
+          wget https://releases.hashicorp.com/vagrant/2.2.6/vagrant_2.2.6_x86_64.deb
+          sudo apt-get --yes  install ./vagrant_2.2.6_x86_64.deb
+          sudo apt-get install --fix-broken
           python -m pip install --requirement "$GITHUB_WORKSPACE/docker/requirements.txt"
       - name: run templates rendering tests
         run: python -m unittest discover --verbose --start-directory "$GITHUB_WORKSPACE/docker"
+      - name: "debug: show Vagrant version"
+        run: vagrant --version
