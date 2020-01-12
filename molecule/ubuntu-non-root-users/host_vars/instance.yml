@@ -1,5 +1,3 @@
 ---
-ansible_become: yes
-
 docker_users:
   - vagrant
