@@ -11,7 +11,7 @@ platforms:
     command: ""
     volumes:
       - "/sys/fs/cgroup:/sys/fs/cgroup:ro"
-      - "docker-data:/var/lib/docker"
+      - "/var/lib/docker"
     keep_volumes: false
     privileged: true
     pre_build_image: true
