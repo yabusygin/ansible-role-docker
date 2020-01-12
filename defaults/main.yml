@@ -12,5 +12,6 @@ docker_compose_arch: x86_64
 docker_compose_download_url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-{{ docker_compose_arch }}"
 docker_compose_latest_release_info_url: https://api.github.com/repos/docker/compose/releases/latest
 docker_compose_path: /usr/bin/docker-compose
+docker_compose_package: docker-compose>=1.7.0
 
 docker_modules_dependencies_install: yes

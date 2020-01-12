@@ -18,3 +18,10 @@
     state: present
     force_apt_get: yes
   when: ansible_facts.python.version.major == 3
+
+- name: install dependencies of Ansible modules for Docker
+  pip:
+    name:
+      - docker>=1.10.0
+      - PyYAML>=3.11
+      - "{{ docker_compose_package }}"
