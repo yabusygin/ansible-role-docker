@@ -43,7 +43,7 @@ def test_daemon_config(host):
 
 
 def test_ansible_modules_dependencies(host):
-    packages = host.pip_package.get_packages(pip_path="pip")
+    packages = host.pip_package.get_packages(pip_path="pip3")
 
     assert "docker" in packages
     min_version = packaging.version.Version(version="1.10.0")

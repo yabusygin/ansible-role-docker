@@ -22,5 +22,5 @@ def test_compose_binary_version(host):
 
 
 def test_pypi_package_is_absent(host):
-    packages = host.pip_package.get_packages(pip_path="pip")
+    packages = host.pip_package.get_packages(pip_path="pip3")
     assert "docker-compose" not in packages
