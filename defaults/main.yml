@@ -7,8 +7,12 @@ docker_apt_sources_suite: "{{ ansible_facts['distribution_release'] }}"
 docker_userns_remap_enable: no
 docker_userns_remap_user: default
 
-docker_compose_install: yes
-docker_compose_arch: x86_64
-docker_compose_download_url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-{{ docker_compose_arch }}"
-docker_compose_latest_release_info_url: https://api.github.com/repos/docker/compose/releases/latest
-docker_compose_path: /usr/bin/docker-compose
+docker_modules_dependencies_install: yes
+
+docker_compose_package: docker-compose>=1.7.0
+
+docker_compose_binary_install: no
+docker_compose_binary_arch: x86_64
+docker_compose_binary_download_url: "https://github.com/docker/compose/releases/download/{{ docker_compose_binary_version }}/docker-compose-Linux-{{ docker_compose_binary_arch }}"
+docker_compose_binary_latest_release_info_url: https://api.github.com/repos/docker/compose/releases/latest
+docker_compose_binary_path: /usr/bin/docker-compose

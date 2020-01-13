@@ -1,4 +1,2 @@
 ---
 ansible_python_interpreter: python3
-
-docker_userns_remap_enable: yes

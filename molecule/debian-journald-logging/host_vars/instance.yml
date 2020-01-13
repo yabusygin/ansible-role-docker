@@ -1,4 +1,6 @@
 ---
+ansible_python_interpreter: python3
+
 docker_log_driver: journald
 docker_log_options:
   - name: tag

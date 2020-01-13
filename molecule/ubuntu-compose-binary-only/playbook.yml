@@ -1,0 +1,5 @@
+---
+- name: converge
+  hosts: instance
+  roles:
+    - role: docker

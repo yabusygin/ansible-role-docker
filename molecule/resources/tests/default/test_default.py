@@ -2,7 +2,7 @@ import os
 import re
 import textwrap
 
-import requests
+import packaging.version
 
 import testinfra.utils.ansible_runner
 
@@ -42,13 +42,26 @@ def test_daemon_config(host):
     assert expect == actual
 
 
-def test_compose_version(host):
-    cmd = host.run_test(command="docker-compose version --short")
-    current_version = cmd.stdout.strip()
+def test_ansible_modules_dependencies(host):
+    packages = host.pip_package.get_packages(pip_path="pip3")
 
-    response = requests.get(
-        url="https://api.github.com/repos/docker/compose/releases/latest",
+    assert "docker" in packages
+    min_version = packaging.version.Version(version="1.10.0")
+    installed_version = packaging.version.parse(
+        version=packages["docker"]["version"],
     )
-    latest_version = response.json()["name"]
+    assert installed_version >= min_version
 
-    assert current_version == latest_version
+    assert "PyYAML" in packages
+    min_version = packaging.version.Version(version="3.11")
+    installed_version = packaging.version.parse(
+        version=packages["PyYAML"]["version"],
+    )
+    assert installed_version >= min_version
+
+    assert "docker-compose" in packages
+    min_version = packaging.version.Version(version="1.7.0")
+    installed_version = packaging.version.parse(
+        version=packages["docker-compose"]["version"],
+    )
+    assert installed_version >= min_version
