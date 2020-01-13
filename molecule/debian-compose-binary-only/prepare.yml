@@ -4,6 +4,11 @@
   gather_facts: false
   tasks:
     - name: install Python 3 for Ansible
-      raw: test -e /usr/bin/python3 || (apt -y update && apt install -y python3-minimal)
+      raw: test -e /usr/bin/python3 || (apt-get -y update && apt-get -y install python3-minimal)
+      become: true
+      changed_when: false
+
+    - name: install pip3 for Ansible
+      raw: test -e /usr/bin/pip3 || (apt-get -y install python3-pip)
       become: true
       changed_when: false
