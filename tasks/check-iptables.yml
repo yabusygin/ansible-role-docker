@@ -1,20 +1,12 @@
 ---
 - name: check iptables filter rules
-  shell: |
-    set -o pipefail
-    iptables --table filter --list-rules | grep --quiet --regexp='^-N DOCKER$'
-  args:
-    executable: /bin/bash
-  changed_when: docker_iptables_filter_test.rc == 0
-  register: docker_iptables_filter_test
+  command: iptables --table filter --list-rules
+  changed_when: "'-N DOCKER' not in docker_iptables_filter_info.stdout_lines"
+  register: docker_iptables_filter_info
   notify: restart daemon
 
 - name: check iptables nat rules
-  shell: |
-    set -o pipefail
-    iptables --table nat --list-rules | grep --quiet --regexp='^-N DOCKER$'
-  args:
-    executable: /bin/bash
-  changed_when: docker_iptables_nat_test.rc == 0
-  register: docker_iptables_nat_test
+  command: iptables --table nat --list-rules
+  changed_when: "'-N DOCKER' not in docker_iptables_nat_info.stdout_lines"
+  register: docker_iptables_nat_info
   notify: restart daemon

@@ -5,11 +5,18 @@
     - name: install Docker
       import_role:
         name: docker
+      tags:
+        - molecule-idempotence-notest
 
     - name: flush iptables nat table
-      iptables:
-        table: nat
-        flush: yes
+      command: iptables --table nat --flush
+      tags:
+        - molecule-idempotence-notest
+
+    - name: delete user-defined iptables chains in nat table
+      command: iptables --table nat --delete-chain
+      tags:
+        - molecule-idempotence-notest
 
     - name: fix iptables rules
       import_role:
