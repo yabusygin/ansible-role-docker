@@ -53,6 +53,7 @@
 
 - name: check iptables rules
   import_tasks: check-iptables.yml
+  when: docker_iptables_check
 
 - name: restart daemon
   meta: flush_handlers
