@@ -1,0 +1,12 @@
+---
+- name: check iptables filter rules
+  command: iptables --table filter --list-rules
+  changed_when: "'-N DOCKER' not in docker_iptables_filter_info.stdout_lines"
+  register: docker_iptables_filter_info
+  notify: restart daemon
+
+- name: check iptables nat rules
+  command: iptables --table nat --list-rules
+  changed_when: "'-N DOCKER' not in docker_iptables_nat_info.stdout_lines"
+  register: docker_iptables_nat_info
+  notify: restart daemon
