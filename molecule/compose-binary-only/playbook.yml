@@ -3,3 +3,9 @@
   hosts: instance
   roles:
     - role: docker
+  tasks:
+    - name: install pip
+      apt:
+        name: install python3-pip
+        state: present
+        force_apt_get: yes
