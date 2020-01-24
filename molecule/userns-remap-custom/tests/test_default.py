@@ -12,7 +12,7 @@ def test_daemon_config(host):
     expect = textwrap.dedent(
         """\
         {
-            "userns-remap": "testuser:testgroup",
+            "userns-remap": "testuser",
             "log-driver": "json-file",
             "log-opts": {
                 "max-size": "10m",
@@ -25,8 +25,22 @@ def test_daemon_config(host):
     assert expect == actual
 
 
+def test_user(host):
+    assert host.user(name="testuser").exists
+
+
 def test_userns_hello_world_container(host):
-    namespaced_dir_path = "/var/lib/docker/1100000.2200000"
+    entry = _get_entry(host=host, path="/etc/subuid", name="testuser")
+    assert entry is not None
+
+    subuid = entry[1]
+
+    entry = _get_entry(host=host, path="/etc/subgid", name="testuser")
+    assert entry is not None
+
+    subgid = entry[1]
+
+    namespaced_dir_path = "/var/lib/docker/{}.{}".format(subuid, subgid)
     assert host.file(path=namespaced_dir_path).is_directory
 
     args = (
