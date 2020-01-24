@@ -1,13 +1,13 @@
 ---
 - name: check iptables filter rules
-  command: >
+  shell: >
     iptables --table filter --list-rules | grep --quiet --regexp='^-N DOCKER$'
   changed_when: docker_iptables_filter_test.rc == 0
   register: docker_iptables_filter_test
   notify: restart daemon
 
 - name: check iptables nat rules
-  command: >
+  shell: >
     iptables --table nat --list-rules | grep --quiet --regexp='^-N DOCKER$'
   changed_when: docker_iptables_nat_test.rc == 0
   register: docker_iptables_nat_test
