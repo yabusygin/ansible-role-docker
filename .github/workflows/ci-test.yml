@@ -28,3 +28,5 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE/docker
           molecule test --all
+        env:
+          TEST_IMAGE: ${{ matrix.image }}
