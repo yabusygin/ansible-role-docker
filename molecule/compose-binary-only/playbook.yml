@@ -6,6 +6,6 @@
   tasks:
     - name: install pip
       apt:
-        name: install python3-pip
+        name: python3-pip
         state: present
         force_apt_get: yes
