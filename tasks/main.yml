@@ -1,4 +1,15 @@
 ---
+- name: create userns-remap user
+  user:
+    name: "{{ docker_userns_remap_user }}"
+    state: present
+    password: "!"
+    system: yes
+    create_home: no
+  when:
+    - docker_userns_remap_enable
+    - docker_userns_remap_user != 'default'
+
 - name: install dependencies
   apt:
     name:
