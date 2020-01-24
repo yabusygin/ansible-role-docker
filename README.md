@@ -114,6 +114,12 @@ value.
 
 [Compose Releases]: https://github.com/docker/compose/releases
 
+### Checking of Iptables Rules Managed by Docker ###
+
+The role checks iptables rules added by Docker. If they are absent Docker daemon
+is restarted. To disable this behaviour set `docker_iptables_check` variable
+to `no`.
+
 Dependencies
 ------------
 
