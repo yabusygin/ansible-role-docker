@@ -1,5 +1,0 @@
----
-ansible_python_interpreter: python3
-
-docker_compose_binary_install: yes
-docker_modules_dependencies_install: no
