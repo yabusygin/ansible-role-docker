@@ -12,7 +12,7 @@ def test_daemon_config(host):
     expect = textwrap.dedent(
         """\
         {
-            "userns-remap": "testuser:testgroup",
+            "userns-remap": "testuser",
             "log-driver": "json-file",
             "log-opts": {
                 "max-size": "10m",
