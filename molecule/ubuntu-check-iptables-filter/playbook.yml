@@ -10,11 +10,13 @@
 
     - name: flush iptables filter table
       command: iptables --table filter --flush
+      changed_when: true
       tags:
         - molecule-idempotence-notest
 
     - name: delete user-defined iptables chains in filter table
       command: iptables --table filter --delete-chain
+      changed_when: true
       tags:
         - molecule-idempotence-notest
 

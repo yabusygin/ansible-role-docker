@@ -10,11 +10,13 @@
 
     - name: flush iptables nat table
       command: iptables --table nat --flush
+      changed_when: true
       tags:
         - molecule-idempotence-notest
 
     - name: delete user-defined iptables chains in nat table
       command: iptables --table nat --delete-chain
+      changed_when: true
       tags:
         - molecule-idempotence-notest
 
