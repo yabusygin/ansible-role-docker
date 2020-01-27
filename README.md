@@ -49,9 +49,9 @@ A list of [non-root Docker users][Non-Root User] is set with `docker_users` vari
 
 To enable [user namespace remapping feature][userns-remap] set
 `docker_userns_remap_enable` variable to `yes`. Docker creates `dockremap` user
-and group for this purpose by default. To speficy custom user and (optionally)
-group use `docker_userns_remap_user` and `docker_userns_remap_group` variables
-accordingly.
+for this purpose by default. Custom user could be specified
+via `docker_userns_remap_user` variable. Custom user will be created,
+subordinate UID/GID ranges will be allocated automatically.
 
 [userns-remap]: https://docs.docker.com/engine/security/userns-remap/
 
