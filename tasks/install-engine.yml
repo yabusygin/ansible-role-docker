@@ -36,12 +36,14 @@
   file:
     path: /etc/docker
     state: directory
+    mode: 0700
 
 - name: set daemon config
   template:
     src: daemon.json.j2
     dest: /etc/docker/daemon.json
     lstrip_blocks: yes
+    mode: 0600
   notify:
     - restart daemon
 
