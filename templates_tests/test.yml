@@ -1,0 +1,41 @@
+---
+tests:
+  - name: default config
+    template: daemon.json.j2
+    expected_result: default/daemon.json
+
+  - name: set config with docker_config variable
+    template: daemon.json.j2
+    variables:
+      inventory: docker_config/inventory.yml
+    expected_result: docker_config/daemon.json
+
+  - name: specify insecure regisities
+    template: daemon.json.j2
+    variables:
+      inventory: insecure_registries/inventory.yml
+    expected_result: insecure_registries/daemon.json
+
+  - name: specify custom loggng driver
+    template: daemon.json.j2
+    variables:
+      inventory: logging_driver/inventory.yml
+    expected_result: logging_driver/daemon.json
+
+  - name: specify custom logging drier and options
+    template: daemon.json.j2
+    variables:
+      inventory: logging_driver/options/inventory.yml
+    expected_result: logging_driver/options/daemon.json
+
+  - name: enable user namespace remapping
+    template: daemon.json.j2
+    variables:
+      inventory: userns_remap/inventory.yml
+    expected_result: userns_remap/daemon.json
+
+  - name: enable user namespace remapping with custom user
+    template: daemon.json.j2
+    variables:
+      inventory: userns_remap/custom_user/inventory.yml
+    expected_result: userns_remap/custom_user/daemon.json
