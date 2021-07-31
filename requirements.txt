@@ -1,6 +1,4 @@
 ansible>=2.9,<2.10
-Jinja2
-PyYAML
-importlib_resources
-requests
+templtest>=0.2,<0.3
+requests>=2.0,<3.0
 molecule[docker]>=2.0,<3.0
