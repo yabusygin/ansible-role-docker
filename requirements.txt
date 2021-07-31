@@ -1,6 +1,6 @@
-ansible
+ansible>=2.9,<2.10
 Jinja2
 PyYAML
 importlib_resources
 requests
-molecule[docker]
+molecule[docker]>=2.0,<3.0
