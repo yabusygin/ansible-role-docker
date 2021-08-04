@@ -1,4 +1,4 @@
 ansible>=2.9,<2.10
 templtest>=0.2,<0.3
 requests>=2.0,<3.0
-molecule[docker]>=2.0,<3.0
+molecule[docker,lint,test]>=3.4,<3.5

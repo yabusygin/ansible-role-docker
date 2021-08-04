@@ -14,14 +14,11 @@ jobs:
           - "geerlingguy/docker-ubuntu1804-ansible:latest"
           - "geerlingguy/docker-ubuntu2004-ansible:latest"
         scenario:
-          - check-iptables-filter
-          - check-iptables-nat
-          - compose-binary-only
           - default
-          - journald-logging
-          - non-root-users
-          - userns-remap-custom
-          - userns-remap-default
+          - fix_iptables_rules
+          - userns_remap
+          - journald_logging
+          - compose_binary
     steps:
       - name: Check-out repository
         uses: actions/checkout@v2

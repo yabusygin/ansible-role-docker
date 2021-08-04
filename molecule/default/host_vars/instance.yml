@@ -1,2 +1,5 @@
 ---
 ansible_python_interpreter: python3
+
+docker_users:
+  - dockeradmin
