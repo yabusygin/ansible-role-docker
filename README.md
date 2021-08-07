@@ -150,7 +150,6 @@ Example Playbook
 
     docker_userns_remap_enable: yes
     docker_userns_remap_user: userns-remap-user
-    docker_userns_remap_group: userns-remap-group
 
     docker_users:
       - docker-admin-1
