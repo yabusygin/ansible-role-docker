@@ -18,3 +18,4 @@ docker_compose_binary_latest_release_info_url: https://api.github.com/repos/dock
 docker_compose_binary_path: /usr/bin/docker-compose
 
 docker_iptables_check: yes
+docker_iptables_executable: /usr/sbin/iptables
