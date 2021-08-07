@@ -3,19 +3,19 @@
   hosts: instance
   tasks:
     - name: flush filter table
-      command: iptables --table filter --flush
+      command: iptables --table=filter --flush
       changed_when: yes
 
     - name: delete user-defined chains in filter table
-      command: iptables --table filter --delete-chain
+      command: iptables --table=filter --delete-chain
       changed_when: yes
 
     - name: flush nat table
-      command: iptables --table nat --flush
+      command: iptables --table=nat --flush
       changed_when: yes
 
     - name: delete user-defined chains in nat table
-      command: iptables --table nat --delete-chain
+      command: iptables --table=nat --delete-chain
       changed_when: yes
 
     - name: fix iptables rules
@@ -25,7 +25,7 @@
         docker_modules_dependencies_install: no
 
     - name: get filter table rules
-      command: iptables --table filter --list-rules
+      command: iptables --table=filter --list-rules
       changed_when: no
       register: _result
 
@@ -34,7 +34,7 @@
         that: "'-N DOCKER' in _result.stdout"
 
     - name: get nat table rules
-      command: iptables --table nat --list-rules
+      command: iptables --table=nat --list-rules
       changed_when: no
       register: _result
 
