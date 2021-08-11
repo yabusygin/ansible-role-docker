@@ -2,10 +2,9 @@
 - name: install Engine
   import_tasks: install-engine.yml
 
+- name: install Compose
+  import_tasks: install-compose.yml
+
 - name: install dependencies of Ansible modules for Docker
   include_tasks: install-modules-dependencies.yml
   when: docker_modules_dependencies_install
-
-- name: install Compose binary
-  include_tasks: install-compose-binary.yml
-  when: docker_compose_binary_install

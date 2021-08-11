@@ -1,0 +1,10 @@
+---
+- name: install Docker Compose binary
+  import_tasks: install-compose-binary.yml
+  when: docker_compose_binary_install
+
+- name: install Docker Compose Python package
+  pip:
+    name: "{{ docker_compose_package }}"
+    state: present
+  when: docker_compose_package_install
