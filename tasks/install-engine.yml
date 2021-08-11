@@ -1,4 +1,15 @@
 ---
+- name: create userns-remap user
+  user:
+    name: "{{ docker_userns_remap_user }}"
+    state: present
+    password: "!"
+    create_home: no
+    shell: /usr/sbin/nologin
+  when:
+    - docker_userns_remap_enable
+    - docker_userns_remap_user != 'default'
+
 - name: install dependencies
   apt:
     name:
@@ -52,3 +63,22 @@
     name: docker.service
     state: started
     enabled: yes
+
+- name: check whether iptables rules have been changed
+  import_tasks: check-iptables.yml
+  when: docker_iptables_check
+
+- name: restart on daemon config or iptables rules change
+  meta: flush_handlers
+
+- name: define non-root users
+  user:
+    name: "{{ user }}"
+    state: present
+    groups:
+      - docker
+    append: yes
+  loop: "{{ docker_users }}"
+  loop_control:
+    loop_var: user
+  when: docker_users is defined
