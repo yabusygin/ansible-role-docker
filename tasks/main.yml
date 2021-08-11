@@ -1,8 +1,8 @@
 ---
-- name: install Engine
+- name: install Docker Engine
   import_tasks: install-engine.yml
 
-- name: install Compose
+- name: install Docker Compose
   import_tasks: install-compose.yml
 
 - name: install dependencies of Ansible modules that manage Docker
