@@ -1,8 +1,8 @@
 ---
 - name: install Docker Compose binary
-  import_tasks: install-compose-binary.yml
+  import_tasks: compose-binary.yml
   when: docker_compose_binary_install
 
 - name: install Docker Compose Python package
-  import_tasks: install-compose-binary.yml
+  import_tasks: compose-python-package.yml
   when: docker_compose_package_install

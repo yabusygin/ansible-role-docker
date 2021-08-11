@@ -1,6 +1,6 @@
 ---
 - name: install pip module dependencies
-  import_tasks: install-pip-dependencies.yml
+  import_tasks: ansible-pip-dependencies.yml
 
 - name: install Docker Compose Python package
   pip:
