@@ -10,16 +10,17 @@
     _compose_binary_current_version: "{{ _result.stdout | trim }}"
   when: _result.stdout is defined
 
-- name: get Compose latest release info
-  uri:
-    url: "{{ docker_compose_binary_latest_release_info_url }}"
-  register: _result
+- name: set docker_compose_binary_version
   when: docker_compose_binary_version is undefined
+  block:
+    - name: get Docker Compose latest release info
+      uri:
+        url: "{{ docker_compose_binary_latest_release_info_url }}"
+      register: _result
 
-- name: set Compose version to install
-  set_fact:
-    docker_compose_binary_version: "{{ _result.json.name }}"
-  when: docker_compose_binary_version is undefined
+    - name: set Docker Compose version to install
+      set_fact:
+        docker_compose_binary_version: "{{ _result.json.name }}"
 
 - name: install Compose
   get_url:
