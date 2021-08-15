@@ -1,24 +1,24 @@
 ---
 - name: get Compose current version info
   command: docker-compose version --short
-  register: docker_compose_binary_version_info
+  register: _result
   changed_when: false
   failed_when: false
 
 - name: set Compose current version
   set_fact:
-    docker_compose_binary_current_version: "{{ docker_compose_binary_version_info.stdout | trim }}"
-  when: docker_compose_binary_version_info.stdout is defined
+    _compose_binary_current_version: "{{ _result.stdout | trim }}"
+  when: _result.stdout is defined
 
 - name: get Compose latest release info
   uri:
     url: "{{ docker_compose_binary_latest_release_info_url }}"
-  register: docker_compose_binary_latest_release_info
+  register: _result
   when: docker_compose_binary_version is undefined
 
 - name: set Compose version to install
   set_fact:
-    docker_compose_binary_version: "{{ docker_compose_binary_latest_release_info.json.name }}"
+    docker_compose_binary_version: "{{ _result.json.name }}"
   when: docker_compose_binary_version is undefined
 
 - name: install Compose
@@ -27,5 +27,5 @@
     dest: "{{ docker_compose_binary_path }}"
     mode: 0755
   when: >
-    docker_compose_binary_current_version is undefined
-    or docker_compose_binary_version != docker_compose_binary_current_version
+    _compose_binary_current_version is undefined
+    or docker_compose_binary_version != _compose_binary_current_version
