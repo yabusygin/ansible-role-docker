@@ -15,9 +15,7 @@
     name:
       - apt-transport-https
       - ca-certificates
-      - curl
       - gnupg
-      - software-properties-common
     state: present
     force_apt_get: yes
     update_cache: yes
