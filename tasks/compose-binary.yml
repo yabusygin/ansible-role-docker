@@ -7,7 +7,7 @@
 
 - name: declare version of installed Docker Compose
   set_fact:
-    _compose_binary_current_version: "{{ _result.stdout | trim }}"
+    _compose_binary_current_version: "{{ _result.stdout|trim }}"
   when: _result.stdout is defined
 
 - name: set docker_compose_binary_version
