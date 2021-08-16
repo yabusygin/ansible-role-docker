@@ -1,11 +1,11 @@
 ---
-- name: get Compose current version info
+- name: get version of installed Docker Compose
   command: docker-compose version --short
   register: _result
   changed_when: false
   failed_when: false
 
-- name: set Compose current version
+- name: declare version of installed Docker Compose
   set_fact:
     _compose_binary_current_version: "{{ _result.stdout | trim }}"
   when: _result.stdout is defined
@@ -18,11 +18,11 @@
         url: "{{ docker_compose_binary_latest_release_info_url }}"
       register: _result
 
-    - name: set Docker Compose version to install
+    - name: declare Docker Compose version to install
       set_fact:
         docker_compose_binary_version: "{{ _result.json.name }}"
 
-- name: install Compose
+- name: install Docker Compose
   get_url:
     url: "{{ docker_compose_binary_download_url }}"
     dest: "{{ docker_compose_binary_path }}"
