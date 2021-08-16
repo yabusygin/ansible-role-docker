@@ -26,7 +26,7 @@
   get_url:
     url: "{{ docker_compose_binary_download_url }}"
     dest: "{{ docker_compose_binary_path }}"
-    mode: 0755
+    mode: u=rwx,g=rx,o=rx
   when: >
     _compose_binary_current_version is undefined
     or docker_compose_binary_version != _compose_binary_current_version
