@@ -1,12 +1,12 @@
 ---
-- name: check iptables filter rules
+- name: check whether iptables filter rules have been changed
   command: "{{ docker_iptables_executable }} --table=filter --list-rules"
-  changed_when: "'-N DOCKER' not in docker_iptables_filter_info.stdout_lines"
-  register: docker_iptables_filter_info
+  changed_when: "'-N DOCKER' not in _result.stdout_lines"
+  register: _result
   notify: restart daemon
 
-- name: check iptables nat rules
+- name: check whether iptables nat rules have been changed
   command: "{{ docker_iptables_executable }} --table=nat --list-rules"
-  changed_when: "'-N DOCKER' not in docker_iptables_nat_info.stdout_lines"
-  register: docker_iptables_nat_info
+  changed_when: "'-N DOCKER' not in _result.stdout_lines"
+  register: _result
   notify: restart daemon

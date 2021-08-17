@@ -1,0 +1,17 @@
+---
+- name: install pip module dependencies
+  import_tasks: ansible-pip-dependencies.yml
+
+- name: install dependencies of Ansible modules that manage Docker
+  pip:
+    name:
+      - docker>=1.10.0
+      - PyYAML>=3.11
+    state: present
+
+# docker_compose module dependency
+- name: install Docker Compose Python package
+  pip:
+    name: "{{ docker_compose_package }}"
+    state: present
+  when: docker_compose_package_install

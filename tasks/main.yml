@@ -1,41 +1,11 @@
 ---
-- name: create userns-remap user
-  user:
-    name: "{{ docker_userns_remap_user }}"
-    state: present
-    password: "!"
-    create_home: no
-    shell: /usr/sbin/nologin
-  when:
-    - docker_userns_remap_enable
-    - docker_userns_remap_user != 'default'
+- name: install Docker Engine
+  import_tasks: engine.yml
 
-- name: install Engine
-  import_tasks: install-engine.yml
-
-- name: check iptables rules
-  import_tasks: check-iptables.yml
-  when: docker_iptables_check
-
-- name: restart daemon
-  meta: flush_handlers
-
-- name: set non-root users
-  user:
-    name: "{{ user }}"
-    state: present
-    groups:
-      - docker
-    append: yes
-  loop: "{{ docker_users }}"
-  loop_control:
-    loop_var: user
-  when: docker_users is defined
-
-- name: install dependencies of Ansible modules for Docker
-  include_tasks: install-modules-dependencies.yml
-  when: docker_modules_dependencies_install
-
-- name: install Compose binary
-  include_tasks: install-compose-binary.yml
+- name: install Docker Compose binary
+  import_tasks: compose-binary.yml
   when: docker_compose_binary_install
+
+- name: install dependencies of Ansible modules that manage Docker
+  import_tasks: ansible-docker-dependencies.yml
+  when: docker_modules_dependencies_install
