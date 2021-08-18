@@ -2,14 +2,6 @@
 - name: converge
   hosts: instance
   tasks:
-    # docker-compose>=1.29.0 installation fails on platforms that use
-    # Python 3.5 (e.g. Debian 9), because it requires docker>=5.0.0 that
-    # supports Python 3.6 or newer only.
-    - name: override Docker Compose Python package version for Python 3.5
-      set_fact:
-        docker_compose_package: docker-compose>=1.7.0,<1.29.0
-      when: ansible_facts.python_version is version('3.6', '<')
-
     - name: install Docker
       import_role:
         name: yabusygin.docker
