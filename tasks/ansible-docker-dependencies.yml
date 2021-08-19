@@ -1,5 +1,5 @@
 ---
-- name: install pip module dependencies
+- name: install "pip" Ansible module dependencies
   apt:
     name:
       - python3-pip
