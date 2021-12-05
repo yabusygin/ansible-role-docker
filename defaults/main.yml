@@ -1,8 +1,11 @@
 ---
-docker_apt_key_url: "https://download.docker.com/linux/{{ ansible_facts['distribution']|lower }}/gpg"
+_distribution: "{{ ansible_facts['distribution']|lower }}"
+_release: "{{ ansible_facts['distribution_release'] }}"
+
+docker_apt_key_url: "https://download.docker.com/linux/{{ _distribution }}/gpg"
 docker_apt_sources_arch: amd64
-docker_apt_sources_uri: "https://download.docker.com/linux/{{ ansible_facts['distribution']|lower }}"
-docker_apt_sources_suite: "{{ ansible_facts['distribution_release'] }}"
+docker_apt_sources_uri: "https://download.docker.com/linux/{{ _distribution }}"
+docker_apt_sources_suite: "{{ _release }}"
 
 docker_config:
   log-driver: json-file
