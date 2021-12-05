@@ -84,6 +84,18 @@ None.
 Example Playbook
 ----------------
 
+Default setup:
+
+```yaml
+---
+- hosts: production
+  tasks:
+    - import_role:
+        name: yabusygin.docker
+```
+
+Customized setup:
+
 ```yaml
 ---
 - hosts: production
