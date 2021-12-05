@@ -18,9 +18,6 @@ None.
 Role Variables
 --------------
 
-All variables are optional. An example of variable usage provided in *Example
-Playbook* section.
-
 ### Docker Daemon Configuration ###
 
 The Docker daemon configuration file (`/etc/docker/daemon.json`) content may be
