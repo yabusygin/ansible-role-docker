@@ -14,8 +14,14 @@ docker_config:
     max-file: "3"
 
 docker_ansible_dependencies_install: yes
-
-docker_compose_package: docker-compose>=1.7.0
+docker_ansible_dependencies_apt:
+  - python3-pip
+  - python3-setuptools
+  - python3-virtualenv
+docker_ansible_dependencies_pip:
+  - docker>=1.10.0
+  - PyYAML>=3.11
+  - docker-compose>=1.7.0
 
 docker_compose_binary_install: no
 docker_compose_binary_arch: x86_64
