@@ -62,18 +62,13 @@ To disable installation of Ansible module dependencies set
 ### Compose Binary ###
 
 To install [Docker Compose binary][Compose Releases] set
-`docker_compose_binary_install` variable to `yes`. You may also want to disable
-[Docker Compose Python package][docker-compose] installation by setting
-`docker_compose_package_install` to `no` (see *Ansible Modules Dependencies*
-section).
+`docker_compose_binary_install` variable to `yes`. The latest Compose version is
+installed by default. Use `docker_compose_binary_version` variable to specify
+the particular version to install. To change the default Compose executable
+installation path (`/usr/bin/docker-compose`) override
+`docker_compose_binary_path` variable value.
 
 [Compose Releases]: https://github.com/docker/compose/releases
-
-The latest Compose version is installed by default. Use
-`docker_compose_binary_version` variable to specify the particular version
-to install. To change the default Compose executable installation path
-(`/usr/bin/docker-compose`) override `docker_compose_binary_path` variable
-value.
 
 ### Checking of Iptables Rules Managed by Docker ###
 
