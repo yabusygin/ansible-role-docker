@@ -4,8 +4,8 @@ Ansible Role: docker
 ![Test workflow status](https://github.com/yabusygin/ansible-role-docker/workflows/test/badge.svg)
 ![Release workflow status](https://github.com/yabusygin/ansible-role-docker/workflows/release/badge.svg)
 
-An Ansible role installing [Docker CE][Engine] and [Docker Compose][Compose]
-on Linux (Debian/Ubuntu).
+An Ansible role installing [Docker Engine][Engine] and
+[Docker Compose][Compose] on Linux (Debian/Ubuntu).
 
 [Engine]: https://docs.docker.com/install/
 [Compose]: https://docs.docker.com/compose/
