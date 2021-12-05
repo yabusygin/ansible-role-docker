@@ -19,7 +19,6 @@ jobs:
           - default
           - fix_iptables_rules
           - userns_remap
-          - journald_logging
           - compose_binary
     steps:
       - name: Check-out repository

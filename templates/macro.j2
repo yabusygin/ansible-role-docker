@@ -1,7 +1,0 @@
-{% macro comma_separated(value) %}
-    {% if value is string -%}
-        {{ value }}
-    {%- else -%}
-        {{ value | join(",") }}
-    {%- endif %}
-{% endmacro %}

@@ -1,0 +1,7 @@
+{
+    "userns-remap": "default",
+    "log-driver": "journald",
+    "insecure-registries": [
+        "registry.example.com:5000"
+    ]
+}

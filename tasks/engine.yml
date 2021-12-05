@@ -1,15 +1,4 @@
 ---
-- name: create userns-remap user
-  user:
-    name: "{{ docker_userns_remap_user }}"
-    state: present
-    password: "!"
-    create_home: no
-    shell: /usr/sbin/nologin
-  when:
-    - docker_userns_remap_enable
-    - docker_userns_remap_user != 'default'
-
 - name: install dependencies
   apt:
     name:
