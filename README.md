@@ -101,7 +101,7 @@ Example Playbook
             - registry.example.com:5000
         docker_compose_binary_install: yes
         docker_compose_binary_version: 1.23.2
-        docker_compose_binary_path: /usr/local/bin/docker-compose
+        docker_compose_binary_path: /home/user/.local/bin/docker-compose
 ```
 
 License
