@@ -58,15 +58,3 @@
 
 - name: restart on daemon config or iptables rules change
   meta: flush_handlers
-
-- name: define non-root users
-  user:
-    name: "{{ user }}"
-    state: present
-    groups:
-      - docker
-    append: yes
-  loop: "{{ docker_users }}"
-  loop_control:
-    loop_var: user
-  when: docker_users is defined

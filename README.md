@@ -45,12 +45,6 @@ The default configuration file content is following:
 }
 ```
 
-### Non-root Users ###
-
-A list of [non-root Docker users][Non-Root User] is set with `docker_users` variable.
-
-[Non-Root User]: https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user
-
 ### Ansible Modules Dependencies ###
 
 Dependencies of the following Ansible modules are installed by default:
@@ -114,10 +108,6 @@ Example Playbook
         max-file: "3"
       insecure-registries:
         - registry.example.com:5000
-
-    docker_users:
-      - docker-admin-1
-      - docker-admin-2
 
     docker_compose_package_install: no
 

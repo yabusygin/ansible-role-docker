@@ -2,14 +2,6 @@
 - name: converge
   hosts: instance
   tasks:
-    - name: create Docker administrator
-      user:
-        name: dockeradmin
-        state: present
-        password: "!"
-        create_home: yes
-        shell: /bin/bash
-
     - name: install Docker
       import_role:
         name: yabusygin.docker

@@ -9,8 +9,8 @@ testinfra_hosts = _runner.get_hosts("instance")
 
 
 def test_run_container(host):
-    with host.sudo(user="dockeradmin"):
-        cmd = host.run_test(command="docker container run hello-world")
+    args = ("docker", "container", "run", "hello-world")
+    cmd = host.run_expect(expected=[0], command=" ".join(args))
     assert "Hello from Docker!" in cmd.stdout
 
 
