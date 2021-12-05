@@ -87,21 +87,21 @@ Example Playbook
 ```yaml
 ---
 - hosts: production
-  roles:
-    - role: yabusygin.docker
-  vars:
-    docker_config:
-      userns-remap: default
-      log-driver: json-file
-      log-opts:
-        max-size: 10m
-        max-file: "3"
-      insecure-registries:
-        - registry.example.com:5000
-
-    docker_compose_binary_install: yes
-    docker_compose_binary_version: 1.23.2
-    docker_compose_binary_path: /usr/local/bin/docker-compose
+  tasks:
+    - import_role:
+        name: yabusygin.docker
+      vars:
+        docker_config:
+          userns-remap: default
+          log-driver: json-file
+          log-opts:
+            max-size: 10m
+            max-file: "3"
+          insecure-registries:
+            - registry.example.com:5000
+        docker_compose_binary_install: yes
+        docker_compose_binary_version: 1.23.2
+        docker_compose_binary_path: /usr/local/bin/docker-compose
 ```
 
 License
