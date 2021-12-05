@@ -8,4 +8,4 @@
 
 - name: install dependencies of Ansible modules that manage Docker
   import_tasks: ansible-docker-dependencies.yml
-  when: docker_modules_dependencies_install
+  when: docker_ansible_dependencies_install

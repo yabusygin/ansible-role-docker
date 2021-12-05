@@ -13,7 +13,7 @@ docker_config:
     max-size: 10m
     max-file: "3"
 
-docker_modules_dependencies_install: yes
+docker_ansible_dependencies_install: yes
 
 docker_compose_package: docker-compose>=1.7.0
 
