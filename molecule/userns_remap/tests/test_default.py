@@ -1,3 +1,4 @@
+from json import loads
 from os import environ
 from pathlib import Path
 
@@ -25,14 +26,14 @@ def test_run_container(host):
         "--name=say-hello",
         "hello-world",
     )
-    cmd = host.run_test(command=" ".join(args))
+    cmd = host.run_expect(expected=[0], command=" ".join(args))
     assert "Hello from Docker!" in cmd.stdout
 
-    matches = host.docker.get_containers(name="say-hello")
-    assert len(matches) == 1
+    args = ("docker", "container", "inspect", "say-hello")
+    cmd = host.run_expect(expected=[0], command=" ".join(args))
 
-    container_info = matches[0]
-    container_id = container_info.id
+    container_info = loads(cmd.stdout)[0]
+    container_id = container_info["Id"]
     container_path = Path(docker_dir_path, "containers", container_id)
     assert host.file(str(container_path)).is_directory
 
