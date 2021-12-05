@@ -18,12 +18,22 @@ None.
 Role Variables
 --------------
 
-All variables are optional. An example of variable usage provided
-in *Example Playbook* section.
+All variables are optional. An example of variable usage provided in *Example
+Playbook* section.
 
-### Logging ###
+### Docker Daemon Configuration ###
 
-By default the following configuration is applied:
+The Docker daemon configuration file (`/etc/docker/daemon.json`) content may be
+set explicitly with `docker_config` variable:
+
+```yaml
+docker_config:
+  userns-remap: default
+  insecure-registries:
+    - registry.example.com:5000
+```
+
+The default configuration file content is following:
 
 ```json
 {
@@ -35,52 +45,11 @@ By default the following configuration is applied:
 }
 ```
 
-`docker_log_driver` variable could be used to override the default logging
-driver. Custom logging options could be specified with `docker_log_options`
-variable.
-
 ### Non-root Users ###
 
 A list of [non-root Docker users][Non-Root User] is set with `docker_users` variable.
 
 [Non-Root User]: https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user
-
-### User Namespace Remapping ###
-
-To enable [user namespace remapping feature][userns-remap] set
-`docker_userns_remap_enable` variable to `yes`. Docker creates `dockremap` user
-for this purpose by default. Custom user could be specified
-via `docker_userns_remap_user` variable. Custom user will be created,
-subordinate UID/GID ranges will be allocated automatically.
-
-[userns-remap]: https://docs.docker.com/engine/security/userns-remap/
-
-### Insecure Registries ###
-
-[Insecure (using HTTP transport) registries][Insecure Registries] are specified
-with `docker_insecure_registries` variable.
-
-[Insecure Registries]: https://docs.docker.com/registry/insecure/
-
-### Custom Docker Daemon config ###
-
-Docker Daemon config (`/etc/docker/daemon.json`) content could be set explicitly
-with `docker_config` variable. The following two variable sets are equivalent:
-
-```yaml
----
-docker_userns_remap_enable: yes
-```
-
-```yaml
----
-docker_config:
-  userns-remap: "default"
-  log-driver: json-file
-  log-opts:
-    max-size: 10m
-    max-file: "3"
-```
 
 ### Ansible Modules Dependencies ###
 
@@ -137,21 +106,14 @@ Example Playbook
   roles:
     - role: yabusygin.docker
   vars:
-    docker_insecure_registries:
-      - "registry1.example.com:5001"
-      - "registry2.example.com:5002"
-
-    docker_log_driver: journald
-    docker_log_options:
-      - name: tag
-        value: "{% raw %}{{.Name}}/{{.FullID}}{% endraw %}"
-      - name: env
-        value:
-          - LOCATION
-          - SERVICE_VERSION
-
-    docker_userns_remap_enable: yes
-    docker_userns_remap_user: userns-remap-user
+    docker_config:
+      userns-remap: default
+      log-driver: json-file
+      log-opts:
+        max-size: 10m
+        max-file: "3"
+      insecure-registries:
+        - registry.example.com:5000
 
     docker_users:
       - docker-admin-1
