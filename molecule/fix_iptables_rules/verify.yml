@@ -22,7 +22,7 @@
       import_role:
         name: yabusygin.docker
       vars:
-        docker_modules_dependencies_install: no
+        docker_ansible_dependencies_install: no
 
     - name: get filter table rules
       command: iptables --table=filter --list-rules

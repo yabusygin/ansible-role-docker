@@ -54,7 +54,7 @@ Dependencies of the following Ansible modules are installed by default:
 *   [docker_login](https://docs.ansible.com/ansible/latest/modules/docker_login_module.html)
 
 To disable installation of Ansible module dependencies set
-`docker_modules_dependencies_install` variable to `no`.
+`docker_ansible_dependencies_install` variable to `no`.
 
 ### Compose Binary ###
 
@@ -108,7 +108,7 @@ Customized setup:
             max-file: "3"
           insecure-registries:
             - registry.example.com:5000
-        docker_modules_dependencies_install: no
+        docker_ansible_dependencies_install: no
         docker_compose_binary_install: yes
         docker_compose_binary_version: 1.23.2
         docker_compose_binary_path: /home/user/.local/bin/docker-compose

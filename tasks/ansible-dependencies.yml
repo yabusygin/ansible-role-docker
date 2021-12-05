@@ -1,0 +1,11 @@
+---
+- name: install "pip" Ansible module dependencies
+  apt:
+    name: "{{ docker_ansible_dependencies_apt }}"
+    state: present
+    force_apt_get: yes
+
+- name: install dependencies of Ansible modules that manage Docker
+  pip:
+    name: "{{ docker_ansible_dependencies_pip }}"
+    state: present
