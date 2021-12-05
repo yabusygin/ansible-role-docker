@@ -20,4 +20,3 @@
   pip:
     name: "{{ docker_compose_package }}"
     state: present
-  when: docker_compose_package_install

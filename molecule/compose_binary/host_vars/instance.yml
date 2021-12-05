@@ -2,4 +2,3 @@
 ansible_python_interpreter: python3
 
 docker_compose_binary_install: yes
-docker_compose_package_install: no
