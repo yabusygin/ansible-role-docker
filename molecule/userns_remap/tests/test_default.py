@@ -8,15 +8,11 @@ _runner = AnsibleRunner(environ["MOLECULE_INVENTORY_FILE"])
 testinfra_hosts = _runner.get_hosts("instance")
 
 
-def test_user(host):
-    assert host.user("testremap").exists
-
-
 def test_run_container(host):
-    subuid_entry = _get_entry(host, Path("/etc/subuid"), "testremap")
+    subuid_entry = _get_entry(host, Path("/etc/subuid"), "dockremap")
     assert subuid_entry is not None
 
-    subgid_entry = _get_entry(host, Path("/etc/subgid"), "testremap")
+    subgid_entry = _get_entry(host, Path("/etc/subgid"), "dockremap")
     assert subgid_entry is not None
 
     subuid = subuid_entry[1]
