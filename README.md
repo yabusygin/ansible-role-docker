@@ -112,4 +112,4 @@ MIT
 Author Information
 ------------------
 
-Alexey Busygin \<busygin.contact@yandex.ru\>
+Alexey Busygin \<yaabusygin@gmail.com\>
