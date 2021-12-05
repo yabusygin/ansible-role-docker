@@ -23,8 +23,3 @@ def test_compose_binary_sha256(host):
 
     actual = host.file("/usr/bin/docker-compose").sha256sum
     assert expect == actual
-
-
-def test_compose_package(host):
-    packages = host.pip.get_packages(pip_path="pip3")
-    assert "docker-compose" not in packages

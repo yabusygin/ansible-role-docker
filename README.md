@@ -56,11 +56,6 @@ Dependencies of the following Ansible modules are installed by default:
 *   [docker_compose](https://docs.ansible.com/ansible/latest/modules/docker_compose_module.html)
 *   [docker_login](https://docs.ansible.com/ansible/latest/modules/docker_login_module.html)
 
-[Docker Compose Python package][docker-compose] is also installed unless
-`docker_compose_package_install` is set to `no`.
-
-[docker-compose]: https://pypi.org/project/docker-compose/
-
 To disable installation of Ansible module dependencies set
 `docker_modules_dependencies_install` variable to `no`.
 
@@ -108,8 +103,6 @@ Example Playbook
         max-file: "3"
       insecure-registries:
         - registry.example.com:5000
-
-    docker_compose_package_install: no
 
     docker_compose_binary_install: yes
     docker_compose_binary_version: 1.23.2

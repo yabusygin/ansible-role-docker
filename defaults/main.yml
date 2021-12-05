@@ -12,7 +12,6 @@ docker_config:
 
 docker_modules_dependencies_install: yes
 
-docker_compose_package_install: yes
 docker_compose_package: docker-compose>=1.7.0
 
 docker_compose_binary_install: no
