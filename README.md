@@ -42,19 +42,12 @@ The default configuration file content is following:
 }
 ```
 
-### Ansible Modules Dependencies ###
+### community.docker Modules Dependencies ###
 
-Dependencies of the following Ansible modules are installed by default:
+Dependencies of [community.docker][Collection] modules are installed by default.
+Set `docker_ansible_dependencies_install` to `no` to disable installation.
 
-*   [docker_container](https://docs.ansible.com/ansible/latest/modules/docker_container_module.html)
-*   [docker_image](https://docs.ansible.com/ansible/latest/modules/docker_image_module.html)
-*   [docker_network](https://docs.ansible.com/ansible/latest/modules/docker_network_module.html)
-*   [docker_volume](https://docs.ansible.com/ansible/latest/modules/docker_volume_module.html)
-*   [docker_compose](https://docs.ansible.com/ansible/latest/modules/docker_compose_module.html)
-*   [docker_login](https://docs.ansible.com/ansible/latest/modules/docker_login_module.html)
-
-To disable installation of Ansible module dependencies set
-`docker_ansible_dependencies_install` variable to `no`.
+[Collection]: https://docs.ansible.com/ansible/latest/collections/community/docker/index.html
 
 ### Checking of Iptables Rules Managed by Docker ###
 
