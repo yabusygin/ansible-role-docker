@@ -23,11 +23,5 @@ docker_ansible_dependencies_pip:
   - PyYAML>=3.11
   - docker-compose>=1.7.0
 
-docker_compose_binary_install: no
-docker_compose_binary_arch: x86_64
-docker_compose_binary_download_url: "https://github.com/docker/compose/releases/download/{{ docker_compose_binary_version }}/docker-compose-Linux-{{ docker_compose_binary_arch }}"
-docker_compose_binary_latest_release_info_url: https://api.github.com/repos/docker/compose/releases/latest
-docker_compose_binary_path: /usr/bin/docker-compose
-
 docker_iptables_check: yes
 docker_iptables_executable: iptables

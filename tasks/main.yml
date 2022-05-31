@@ -2,10 +2,6 @@
 - name: install Docker
   import_tasks: docker.yml
 
-- name: install Docker Compose binary
-  import_tasks: compose-binary.yml
-  when: docker_compose_binary_install
-
 - name: install dependencies of Ansible modules that manage Docker
   import_tasks: ansible-dependencies.yml
   when: docker_ansible_dependencies_install
