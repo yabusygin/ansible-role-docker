@@ -3,5 +3,5 @@
   hosts: instance
   tasks:
     - name: install Docker
-      import_role:
+      ansible.builtin.import_role:
         name: yabusygin.docker

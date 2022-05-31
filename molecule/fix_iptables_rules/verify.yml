@@ -3,41 +3,41 @@
   hosts: instance
   tasks:
     - name: flush filter table
-      command: iptables --table=filter --flush
+      ansible.builtin.command: iptables --table=filter --flush
       changed_when: yes
 
     - name: delete user-defined chains in filter table
-      command: iptables --table=filter --delete-chain
+      ansible.builtin.command: iptables --table=filter --delete-chain
       changed_when: yes
 
     - name: flush nat table
-      command: iptables --table=nat --flush
+      ansible.builtin.command: iptables --table=nat --flush
       changed_when: yes
 
     - name: delete user-defined chains in nat table
-      command: iptables --table=nat --delete-chain
+      ansible.builtin.command: iptables --table=nat --delete-chain
       changed_when: yes
 
     - name: fix iptables rules
-      import_role:
+      ansible.builtin.import_role:
         name: yabusygin.docker
       vars:
         docker_ansible_dependencies_install: no
 
     - name: get filter table rules
-      command: iptables --table=filter --list-rules
+      ansible.builtin.command: iptables --table=filter --list-rules
       changed_when: no
       register: _result
 
     - name: check filter table rules
-      assert:
+      ansible.builtin.assert:
         that: "'-N DOCKER' in _result.stdout"
 
     - name: get nat table rules
-      command: iptables --table=nat --list-rules
+      ansible.builtin.command: iptables --table=nat --list-rules
       changed_when: no
       register: _result
 
     - name: check nat table rules
-      assert:
+      ansible.builtin.assert:
         that: "'-N DOCKER' in _result.stdout"
