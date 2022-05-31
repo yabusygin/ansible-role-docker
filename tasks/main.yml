@@ -1,7 +1,7 @@
 ---
 - name: install Docker
-  import_tasks: docker.yml
+  ansible.builtin.import_tasks: docker.yml
 
 - name: install dependencies of Ansible modules that manage Docker
-  import_tasks: ansible-dependencies.yml
+  ansible.builtin.import_tasks: ansible-dependencies.yml
   when: docker_ansible_dependencies_install

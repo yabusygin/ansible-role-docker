@@ -4,7 +4,7 @@
     name:
       - apt-transport-https
       - ca-certificates
-      # required by apt_key module
+      # required by ansible.builtin.apt_key module
       - gnupg
     state: present
     force_apt_get: yes
