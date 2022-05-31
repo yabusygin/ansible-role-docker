@@ -56,17 +56,6 @@ Dependencies of the following Ansible modules are installed by default:
 To disable installation of Ansible module dependencies set
 `docker_ansible_dependencies_install` variable to `no`.
 
-### Compose Binary ###
-
-To install [Docker Compose binary][Compose Releases] set
-`docker_compose_binary_install` variable to `yes`. The latest Compose version is
-installed by default. Use `docker_compose_binary_version` variable to specify
-the particular version to install. To change the default Compose executable
-installation path (`/usr/bin/docker-compose`) override
-`docker_compose_binary_path` variable value.
-
-[Compose Releases]: https://github.com/docker/compose/releases
-
 ### Checking of Iptables Rules Managed by Docker ###
 
 The role checks iptables rules added by Docker. If they are absent Docker daemon
@@ -113,9 +102,6 @@ Customized setup:
           insecure-registries:
             - registry.example.com:5000
         docker_ansible_dependencies_install: no
-        docker_compose_binary_install: yes
-        docker_compose_binary_version: 1.23.2
-        docker_compose_binary_path: /home/user/.local/bin/docker-compose
 ```
 
 License
