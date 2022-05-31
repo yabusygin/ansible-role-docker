@@ -22,12 +22,20 @@
     state: present
     filename: docker
 
-- name: install Docker CE
+- name: install Docker Engine
   ansible.builtin.apt:
     name:
       - docker-ce
       - docker-ce-cli
       - containerd.io
+    state: present
+    force_apt_get: yes
+    update_cache: yes
+
+- name: install Docker Compose
+  ansible.builtin.apt:
+    name:
+      - docker-compose-plugin
     state: present
     force_apt_get: yes
     update_cache: yes
