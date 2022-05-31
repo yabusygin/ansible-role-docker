@@ -7,7 +7,7 @@ Ansible Role: docker
 An Ansible role installing [Docker Engine][Engine] and
 [Docker Compose][Compose] on Linux (Debian/Ubuntu).
 
-[Engine]: https://docs.docker.com/install/
+[Engine]: https://docs.docker.com/engine/
 [Compose]: https://docs.docker.com/compose/
 
 Requirements
