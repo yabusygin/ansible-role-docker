@@ -10,9 +10,6 @@ exit_status_hook() {
 
 trap exit_status_hook EXIT
 
-echo "Running yamllint..."
-yamllint .
-
 echo "Running ansible-lint..."
 ansible-lint
 
