@@ -19,7 +19,6 @@ jobs:
           - default
           - fix_iptables_rules
           - userns_remap
-          - compose_binary
     steps:
       - name: Check-out repository
         uses: actions/checkout@v2
