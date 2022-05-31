@@ -1,6 +1,6 @@
 ---
-- name: install Docker Engine
-  import_tasks: engine.yml
+- name: install Docker
+  import_tasks: docker.yml
 
 - name: install Docker Compose binary
   import_tasks: compose-binary.yml
