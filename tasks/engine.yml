@@ -1,6 +1,6 @@
 ---
 - name: install dependencies
-  apt:
+  ansible.builtin.apt:
     name:
       - apt-transport-https
       - ca-certificates
@@ -11,19 +11,19 @@
     update_cache: yes
 
 - name: add Docker apt key
-  apt_key:
+  ansible.builtin.apt_key:
     url: "{{ docker_apt_key_url }}"
     state: present
     keyring: /usr/share/keyrings/docker-archive-keyring.gpg
 
 - name: add Docker apt repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "deb [arch={{ docker_apt_sources_arch }} signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] {{ docker_apt_sources_uri }} {{ docker_apt_sources_suite }} stable"
     state: present
     filename: docker
 
 - name: install Docker CE
-  apt:
+  ansible.builtin.apt:
     name:
       - docker-ce
       - docker-ce-cli
@@ -33,13 +33,13 @@
     update_cache: yes
 
 - name: create config directory
-  file:
+  ansible.builtin.file:
     path: /etc/docker
     state: directory
     mode: u=rwx,g=,o=
 
 - name: set daemon config
-  template:
+  ansible.builtin.template:
     src: daemon.json.j2
     dest: /etc/docker/daemon.json
     lstrip_blocks: yes
@@ -48,14 +48,14 @@
     - restart daemon
 
 - name: start and enable daemon
-  systemd:
+  ansible.builtin.systemd:
     name: docker.service
     state: started
     enabled: yes
 
 - name: check whether iptables rules have been changed
-  import_tasks: check-iptables.yml
+  ansible.builtin.import_tasks: check-iptables.yml
   when: docker_iptables_check
 
 - name: restart on daemon config or iptables rules change
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers

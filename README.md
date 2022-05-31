@@ -85,9 +85,11 @@ Default setup:
 
 ```yaml
 ---
-- hosts: production
+- name: "example #1"
+  hosts: server
   tasks:
-    - import_role:
+    - name: install Docker
+      ansible.builtin.import_role:
         name: yabusygin.docker
 ```
 
@@ -95,9 +97,11 @@ Customized setup:
 
 ```yaml
 ---
-- hosts: production
+- name: "example #2"
+  hosts: server
   tasks:
-    - import_role:
+    - name: install Docker
+      ansible.builtin.import_role:
         name: yabusygin.docker
       vars:
         docker_config:
