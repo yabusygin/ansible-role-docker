@@ -17,7 +17,6 @@ jobs:
           - "geerlingguy/docker-ubuntu2004-ansible:latest"
         scenario:
           - default
-          - fix_iptables_rules
           - userns_remap
     steps:
       - name: Check-out repository
