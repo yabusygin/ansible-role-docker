@@ -1,5 +1,5 @@
 ---
-_distribution: "{{ ansible_facts['distribution']|lower }}"
+_distribution: "{{ ansible_facts['distribution'] | lower }}"
 _release: "{{ ansible_facts['distribution_release'] }}"
 
 docker_apt_key_url: "https://download.docker.com/linux/{{ _distribution }}/gpg"
