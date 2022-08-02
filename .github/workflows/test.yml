@@ -39,7 +39,7 @@ jobs:
         run: templtest
 
       - name: run molecule tests
-        run: molecule test --scenario-name=$TEST_SCENARIO
+        run: molecule test --scenario-name=${TEST_SCENARIO}
         env:
           TEST_IMAGE: ${{ matrix.image }}
           TEST_SCENARIO: ${{ matrix.scenario }}
