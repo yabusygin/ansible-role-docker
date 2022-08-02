@@ -3,7 +3,7 @@ galaxy_info:
   role_name: docker
   namespace: yabusygin
   author: Alexey Busygin
-  description: An Ansible role installing Docker CE and Docker Compose.
+  description: An Ansible role installing Docker Engine and Docker Compose.
   license: MIT
   min_ansible_version: "2.7"
   platforms:
