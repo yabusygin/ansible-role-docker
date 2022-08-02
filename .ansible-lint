@@ -1,6 +1,0 @@
----
-mock_roles:
-  # A workaround to bypass the following error:
-  # internal-error: the role '<...>' was not found in <...>
-  # See https://github.com/ansible/ansible-lint/issues/1329
-  - yabusygin.docker
