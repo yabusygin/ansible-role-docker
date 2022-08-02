@@ -14,7 +14,7 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - focal
-        - bionic
+        - jammy
   galaxy_tags:
     - system
     - containerization
