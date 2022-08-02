@@ -36,14 +36,9 @@ jobs:
         scenario:
           - default
           - userns_remap
-    defaults:
-      run:
-        working-directory: docker
     steps:
       - name: check-out repository
         uses: actions/checkout@v3.0.2
-        with:
-          path: docker
 
       - name: set up Python 3.10
         uses: actions/setup-python@v4.2.0
