@@ -18,7 +18,7 @@ def test_run_container(host):
 
     subuid = subuid_entry[1]
     subgid = subgid_entry[1]
-    docker_dir_path = Path("/var/lib/docker/{}.{}".format(subuid, subgid))
+    docker_dir_path = Path(f"/var/lib/docker/{subuid}.{subgid}")
     assert host.file(str(docker_dir_path)).is_directory
 
     args = (

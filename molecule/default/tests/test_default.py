@@ -33,10 +33,12 @@ def test_ansible_modules_dependencies(host):
 def test_iptables_restore(host):
     _clear_iptables(host=host)
 
-    vars = {
+    role_vars = {
         "docker_ansible_dependencies_install": False,
     }
-    result = _ansible_role(host=host, role_name="yabusygin.docker", vars=vars)
+    result = _apply_ansible_role(
+        host=host, role_name="yabusygin.docker", role_vars=role_vars
+    )
 
     assert result["changed"]
     assert len(host.iptables.rules(table="filter", chain="DOCKER")) > 0
@@ -50,7 +52,7 @@ def _clear_iptables(host):
     host.run_expect(expected=[0], command="iptables --table=nat --delete-chain")
 
 
-def _ansible_role(host, role_name, vars):
+def _apply_ansible_role(host, role_name, role_vars):
     result = host.ansible(module_name="ansible.builtin.setup")
 
     extra_vars = {
@@ -59,7 +61,7 @@ def _ansible_role(host, role_name, vars):
             for key, value in result["ansible_facts"].items()
         },
     }
-    extra_vars.update(vars)
+    extra_vars.update(role_vars)
 
     return host.ansible(
         module_name="ansible.builtin.import_role",
