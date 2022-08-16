@@ -22,7 +22,9 @@ def test_run_container(host):
     assert host.file(str(docker_dir_path)).is_directory
 
     args = (
-        "docker", "container", "run",
+        "docker",
+        "container",
+        "run",
         "--name=say-hello",
         "hello-world",
     )
@@ -40,15 +42,8 @@ def test_run_container(host):
 
 def _get_entry(host, path, name):
     content = host.file(str(path)).content_string
-    entries = [
-        tuple(line.split(":"))
-        for line in content.splitlines()
-    ]
-    matches = [
-        entry
-        for entry in entries
-        if entry[0] == name
-    ]
+    entries = [tuple(line.split(":")) for line in content.splitlines()]
+    matches = [entry for entry in entries if entry[0] == name]
     if matches:
         return matches[0]
     return None

@@ -44,18 +44,10 @@ def test_iptables_restore(host):
 
 
 def _clear_iptables(host):
-    host.run_expect(
-        expected=[0],
-        command="iptables --table=filter --flush")
-    host.run_expect(
-        expected=[0],
-        command="iptables --table=filter --delete-chain")
-    host.run_expect(
-        expected=[0],
-        command="iptables --table=nat --flush")
-    host.run_expect(
-        expected=[0],
-        command="iptables --table=nat --delete-chain")
+    host.run_expect(expected=[0], command="iptables --table=filter --flush")
+    host.run_expect(expected=[0], command="iptables --table=filter --delete-chain")
+    host.run_expect(expected=[0], command="iptables --table=nat --flush")
+    host.run_expect(expected=[0], command="iptables --table=nat --delete-chain")
 
 
 def _ansible_role(host, role_name, vars):
@@ -73,4 +65,5 @@ def _ansible_role(host, role_name, vars):
         module_name="ansible.builtin.import_role",
         module_args=f"name={role_name}",
         extra_vars=extra_vars,
-        check=False)
+        check=False,
+    )
