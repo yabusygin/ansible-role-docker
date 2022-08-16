@@ -2,6 +2,7 @@ ansible>=6.2,<6.3
 
 molecule[docker,test]>=4.0,<4.1
 ansible-lint>=6.4,<6.5
+pylint>=2.14,<2.15
 black>=22.6,<22.7
 
 templtest>=0.2,<0.3

@@ -10,10 +10,15 @@ exit_handler() {
 
 trap exit_handler EXIT
 
+testinfra_tests=$(find molecule/ -name 'test_*.py')
+
 echo "Running ansible-lint..."
 ansible-lint
 
+echo "Running pylint..."
+pylint ${testinfra_tests}
+
 echo "Running black..."
-black --check molecule/
+black --check ${testinfra_tests}
 
 echo "Success"
