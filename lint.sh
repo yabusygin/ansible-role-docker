@@ -16,4 +16,7 @@ ansible-lint
 echo "Running flake8..."
 flake8 molecule/
 
+echo "Running black..."
+black --check molecule/
+
 echo "Success"
