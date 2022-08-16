@@ -1,4 +1,8 @@
-[tool.black]
+[tool.mypy]
+
+[[tool.mypy.overrides]]
+module = "testinfra.*"
+ignore_missing_imports = true
 
 [tool.pylint."MESSAGES CONTROL"]
 disable = [
@@ -15,3 +19,5 @@ disable = [
     "missing-class-docstring",
     "missing-function-docstring"
 ]
+
+[tool.black]
