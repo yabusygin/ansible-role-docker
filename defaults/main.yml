@@ -16,7 +16,7 @@ docker_ansible_dependencies_apt:
   - python3-setuptools
   - python3-virtualenv
 docker_ansible_dependencies_pip:
-  - docker>=1.10.0
+  - docker>=1.8.0
   - PyYAML>=3.11
   - docker-compose>=1.7.0,<2.0.0
 
