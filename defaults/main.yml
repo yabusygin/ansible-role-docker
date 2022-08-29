@@ -18,7 +18,7 @@ docker_ansible_dependencies_apt:
 docker_ansible_dependencies_pip:
   - docker>=1.10.0
   - PyYAML>=3.11
-  - docker-compose>=1.7.0
+  - docker-compose>=1.7.0,<2.0.0
 
 docker_iptables_check: yes
 docker_iptables_executable: iptables
